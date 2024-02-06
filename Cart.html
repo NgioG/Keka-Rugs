@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Add Bootstrap JS and Popper.js (required for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #cart {
+      width: 300px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .item input {
+      width: 40px;
+      text-align: center;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="container my-5">
+  <div id="cart">
+    <h2>Shopping Cart</h2>
+
+    <div class="item" data-id="rugSize">
+      <span>Rug Size:</span>
+      <label>
+        <input type="radio" name="rugSize" value="1,1"> 1*1
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="rugSize" value="1,2"> 1*2
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="rugSize" value="2,1"> 2*1
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="rugSize" value="2,2"> 2*2
+      </label>
+      <br>
+    </div>
+
+    <div class="item" data-id="rugMaterial">
+      <span>Rug Material:</span>
+      <br>
+      <label>
+        <input type="radio" name="rugMaterial" value="wool"> Wool
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="rugMaterial" value="cotton"> Cotton
+      </label>
+      <br>
+    </div>
+
+    <!-- Add more items as needed -->
+
+    <p>Total: $<span id="total">0.00</span></p>
+  </div>
+</div>
+
+  <script>
+    // You can add additional logic here to adjust values and calculate the total
+    // Example: Add event listeners to radio buttons and updateTotal function
+
+    function updateTotal() {
+    var total = 0.00;
+
+    // Get selected rugSize value
+    var selectedRugSize = document.querySelector('input[name="rugSize"]:checked');
+    if (selectedRugSize) {
+      total += parseFloat(selectedRugSize.value);
+    }
+
+    // Get selected rugMaterial value
+    var selectedRugMaterial = document.querySelector('input[name="rugMaterial"]:checked');
+    if (selectedRugMaterial) {
+      // Assign values to rug materials as needed
+      var materialValues = {
+        "wool": 10.00,
+        "cotton": 8.00
+        // Add more materials as needed
+      };
+      total += materialValues[selectedRugMaterial.value];
+    }
+
+    // Update the total
+    document.getElementById('total').innerText = total.toFixed(2);
+  }
+
+  // Add event listeners to radio buttons for rugSize and rugMaterial
+  var rugSizeRadios = document.querySelectorAll('input[name="rugSize"]');
+  rugSizeRadios.forEach(function(radio) {
+    radio.addEventListener('change', updateTotal);
+  });
+
+  var rugMaterialRadios = document.querySelectorAll('input[name="rugMaterial"]');
+  rugMaterialRadios.forEach(function(radio) {
+    radio.addEventListener('change', updateTotal);
+  });
+
+    // Add event listeners to radio buttons for rugSize, frameSize, and rugMaterial
+    var rugSizeRadios = document.querySelectorAll('input[name="rugSize"]');
+    rugSizeRadios.forEach(function(radio) {
+      radio.addEventListener('change', updateTotal);
+    });
+
+    var frameSizeRadios = document.querySelectorAll('input[name="frameSize"]');
+    frameSizeRadios.forEach(function(radio) {
+      radio.addEventListener('change', updateTotal);
+    });
+
+    var rugMaterialRadios = document.querySelectorAll('input[name="rugMaterial"]');
+    rugMaterialRadios.forEach(function(radio) {
+      radio.addEventListener('change', updateTotal);
+    });
+  </script>
+
+</body>
+</html>
